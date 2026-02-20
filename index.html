@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celebrity Fitness Gym - Transform Your Body, Elevate Your Mind | Modern Fitness Training</title>
+    <meta name="description" content="Join Celebrity Fitness Gym and transform your fitness journey. Professional trainers, state-of-the-art equipment, and proven results. Start your free trial today!">
+    <meta name="keywords" content="gym, fitness, personal training, weight lifting, gym membership, fitness classes">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #ff6b35;
+            --secondary: #004e89;
+            --accent: #f7b801;
+            --dark: #1a1a1a;
+            --light: #f5f5f5;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8a50 100%);
+            color: white;
+            padding: 12px 32px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        .btn-secondary {
+            background: #004e89;
+            color: white;
+            padding: 12px 32px;
+            border-radius: 50px;
+            border: 2px solid #004e89;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #004e89;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-gradient::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b35, #f7b801);
+            border-radius: 2px;
+        }
+
+        .pricing-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            border: 2px solid #ff6b35;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, rgba(0, 78, 137, 0.05) 100%);
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(255, 107, 53, 0.2);
+        }
+
+        .pricing-card.featured::before {
+            content: 'BEST VALUE';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ff6b35;
+            color: white;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .pricing-card:hover {
+            border-color: #ff6b35;
+        }
+
+        .timer {
+            background: linear-gradient(135deg, #ff6b35, #ff8a50);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid #ff6b35;
+        }
+
+        .testimonial-card .stars {
+            color: #f7b801;
+            margin-bottom: 15px;
+        }
+
+        .trainer-card {
+            text-align: center;
+            border-radius: 15px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .trainer-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #ff6b35, #004e89);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+        }
+
+        .trainer-info {
+            padding: 20px;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 20px 0;
+        }
+
+        .faq-item button {
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #333;
+        }
+
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: #666;
+            padding-top: 0;
+        }
+
+        .faq-content.active {
+            max-height: 500px;
+            padding-top: 15px;
+        }
+
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-btn a {
+            color: white;
+            font-size: 30px;
+            text-decoration: none;
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-dumbbell text-2xl" style="color: #ff6b35;"></i>
+                <span class="font-bold text-xl">Celebrity Fitness Gym</span>
+            </div>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="#services" class="hover:text-orange-500 transition">Services</a>
+                <a href="#pricing" class="hover:text-orange-500 transition">Pricing</a>
+                <a href="#trainers" class="hover:text-orange-500 transition">Trainers</a>
+                <a href="#contact" class="hover:text-orange-500 transition">Contact</a>
+            </div>
+
+            <button class="btn-primary text-sm">Join Now</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white py-20 md:py-32 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center relative z-10">
+            <div class="scroll-reveal">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                    <span style="color: #ff6b35;">Transform</span> Your Body, <span style="color: #f7b801;">Elevate</span> Your Mind
+                </h1>
+                <p class="text-xl text-gray-300 mb-8">Join Celebrity Fitness Gym and experience the most motivating fitness community in your city. Professional trainers, state-of-the-art equipment, and proven results.</p>
+                
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button class="btn-primary text-lg px-8 py-4">🚀 Start Free Trial</button>
+                    <button class="btn-secondary text-lg px-8 py-4">📞 Call Us Now</button>
+                </div>
+
+                <div class="mt-12 grid grid-cols-3 gap-8">
+                    <div>
+                        <h3 class="text-3xl font-bold text-orange-400">500+</h3>
+                        <p class="text-gray-300">Active Members</p>
+                    </div>
+                    <div>
+                        <h3 class="text-3xl font-bold text-orange-400">25+</h3>
+                        <p class="text-gray-300">Expert Trainers</p>
+                    </div>
+                    <div>
+                        <h3 class="text-3xl font-bold text-orange-400">10K+</h3>
+                        <p class="text-gray-300">Transformations</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hidden md:block scroll-reveal" style="animation-delay: 0.2s;">
+                <div class="relative">
+                    <div style="background: linear-gradient(135deg, #ff6b35, #004e89); width: 100%; height: 400px; border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-heartbeat text-8xl text-white opacity-30"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4">Why Choose Celebrity Fitness Gym?</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">We're not just a gym. We're a fitness revolution dedicated to helping you achieve your goals.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-hover bg-white p-8 rounded-15px text-center">
+                    <i class="fas fa-users text-5xl mb-4" style="color: #ff6b35;"></i>
+                    <h3 class="text-xl font-bold mb-3">Supportive Community</h3>
+                    <p class="text-gray-600">Join a community of 500+ motivated individuals pushing towards their fitness goals together.</p>
+                </div>
+
+                <div class="card-hover bg-white p-8 rounded-15px text-center">
+                    <i class="fas fa-certificate text-5xl mb-4" style="color: #ff6b35;"></i>
+                    <h3 class="text-xl font-bold mb-3">Expert Trainers</h3>
+                    <p class="text-gray-600">All trainers are certified, experienced, and passionate about helping you succeed.</p>
+                </div>
+
+                <div class="card-hover bg-white p-8 rounded-15px text-center">
+                    <i class="fas fa-trophy text-5xl mb-4" style="color: #ff6b35;"></i>
+                    <h3 class="text-xl font-bold mb-3">Proven Results</h3>
+                    <p class="text-gray-600">Our members see average transformations in 90 days. Your success is our mission.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-20" id="services">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold section-title">Our Services</h2>
+                <p class="text-xl text-gray-600 mt-8">Comprehensive fitness solutions tailored to your goals</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Weight Training -->
+                <div class="card-hover bg-white p-8 rounded-15px border border-gray-200">
+                    <div style="background: linear-gradient(135deg, #ff6b35, #ff8a50); width: 60px; height: 60px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                        <i class="fas fa-dumbbell text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Weight Training</h3>
+                    <p class="text-gray-600 mb-4">Build muscle and strength with our professional-grade equipment and expert guidance.</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>✓ Free weights & machines</li>
+                        <li>✓ Custom workout plans</li>
+                        <li>✓ Progress tracking</li>
+                    </ul>
+                </div>
+
+                <!-- Personal Training -->
+                <div class="card-hover bg-white p-8 rounded-15px border border-gray-200">
+                    <div style="background: linear-gradient(135deg, #004e89, #0066b3); width: 60px; height: 60px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                        <i class="fas fa-user-tie text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Personal Training</h3>
+                    <p class="text-gray-600 mb-4">One-on-one coaching from certified trainers for accelerated results and accountability.</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>✓ Customized programs</li>
+                        <li>✓ Nutritional guidance</li>
+                        <li>✓ Weekly assessments</li>
+                    </ul>
+                </div>
+
+                <!-- Cardio & Endurance -->
+                <div class="card-hover bg-white p-8 rounded-15px border border-gray-200">
+                    <div style="background: linear-gradient(135deg, #f7b801, #ffc933); width: 60px; height: 60px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                        <i class="fas fa-heart text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Cardio & Endurance</h3>
+                    <p class="text-gray-600 mb-4">Improve your cardiovascular health with state-of-the-art cardio equipment.</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>✓ Treadmills & bikes</li>
+                        <li>✓ Rowing machines</li>
+                        <li>✓ Heart rate monitoring</li>
+                    </ul>
+                </div>
+
+                <!-- Group Classes -->
+                <div class="card-hover bg-white p-8 rounded-15px border border-gray-200">
+                    <div style="background: linear-gradient(135deg, #ff6b35, #004e89); width: 60px; height: 60px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                        <i class="fas fa-people-arrows text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Group Classes</h3>
+                    <p class="text-gray-600 mb-4">High-energy group workouts including yoga, HIIT, Zumba, and CrossFit.</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>✓ Daily classes</li>
+                        <li>✓ Expert instructors</li>
+                        <li>✓ Flexible timing</li>
+                    </ul>
+                </div>
+
+                <!-- Nutrition Coaching -->
+                <div class="card-hover bg-white p-8 rounded-15px border border-gray-200">
+                    <div style="background: linear-gradient(135deg, #004e89, #f7b801); width: 60px; height: 60px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                        <i class="fas fa-apple-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Nutrition Coaching</h3>
+                    <p class="text-gray-600 mb-4">Personalized meal plans and dietary guidance from certified nutritionists.</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>✓ Custom meal plans</li>
+                        <li>✓ Macro tracking</li>
+                        <li>✓ Monthly reviews</li>
+                    </ul>
+                </div>
+
+                <!-- Transformation Program -->
+                <div class="card-hover bg-white p-8 rounded-15px border border-gray-200">
+                    <div style="background: linear-gradient(135deg, #f7b801, #ff6b35); width: 60px; height: 60px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                        <i class="fas fa-star text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">90-Day Challenge</h3>
+                    <p class="text-gray-600 mb-4">Our signature program combining training, nutrition, and accountability coaching.</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>✓ Structured program</li>
+                        <li>✓ Weekly check-ins</li>
+                        <li>✓ Community support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="py-20 bg-gray-50" id="pricing">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold section-title">Flexible Membership Plans</h2>
+                <p class="text-xl text-gray-600 mt-8">Choose the plan that fits your goals and budget</p>
+            </div>
+
+            <div class="timer">
+                <i class="fas fa-clock"></i> LIMITED TIME: 30% OFF FOR FIRST 50 MEMBERS + FREE PT SESSION! Offer ends in 3 days
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Basic Plan -->
+                <div class="pricing-card">
+                    <h3 class="text-2xl font-bold mb-3">Starter</h3>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold">₹999</span>
+                        <span class="text-gray-500">/month</span>
+                    </div>
+                    <p class="text-gray-600 mb-8">Perfect for beginners</p>
+
+                    <button class="btn-primary w-full mb-8">Get Started</button>
+
+                    <ul class="text-left space-y-4">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Gym access 24/7</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> All equipment access</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Locker facility</li>
+                        <li class="flex items-center"><i class="fas fa-times text-gray-300 mr-3"></i> Personal trainer</li>
+                        <li class="flex items-center"><i class="fas fa-times text-gray-300 mr-3"></i> Group classes</li>
+                        <li class="flex items-center"><i class="fas fa-times text-gray-300 mr-3"></i> Nutrition plan</li>
+                    </ul>
+                </div>
+
+                <!-- Pro Plan (Featured) -->
+                <div class="pricing-card featured">
+                    <h3 class="text-2xl font-bold mb-3">Pro</h3>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold">₹2,499</span>
+                        <span class="text-gray-500">/month</span>
+                    </div>
+                    <p class="text-gray-600 mb-8">Our most popular choice</p>
+
+                    <button class="btn-primary w-full mb-8">Join Pro</button>
+
+                    <ul class="text-left space-y-4">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Everything in Starter</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> 4 PT sessions/month</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Group classes</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Basic nutrition plan</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Progress tracking</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Priority support</li>
+                    </ul>
+                </div>
+
+                <!-- Elite Plan -->
+                <div class="pricing-card">
+                    <h3 class="text-2xl font-bold mb-3">Elite</h3>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold">₹4,999</span>
+                        <span class="text-gray-500">/month</span>
+                    </div>
+                    <p class="text-gray-600 mb-8">Maximum results</p>
+
+                    <button class="btn-primary w-full mb-8">Go Elite</button>
+
+                    <ul class="text-left space-y-4">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Everything in Pro</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Unlimited PT sessions</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Personalized meal plan</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> 90-Day challenge</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Exclusive events</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> 24/7 trainer support</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="text-center mt-12 bg-white p-8 rounded-15px border-2 border-gray-200">
+                <p class="text-gray-600 mb-4">🎁 <strong>Special Offer:</strong> Sign up this month and get <strong>3 free personal training sessions</strong>!</p>
+                <p class="text-gray-500 text-sm">* Valid for new members. Terms and conditions apply.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trainers Section -->
+    <section class="py-20" id="trainers">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold section-title">Meet Our Expert Trainers</h2>
+                <p class="text-xl text-gray-600 mt-8">Certified professionals dedicated to your success</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Trainer 1 -->
+                <div class="trainer-card card-hover">
+                    <div class="trainer-image">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="trainer-info">
+                        <h3 class="text-xl font-bold mb-2">Rajesh Kumar</h3>
+                        <p style="color: #ff6b35;" class="font-semibold mb-3">Strength & Conditioning Coach</p>
+                        <p class="text-sm text-gray-600 mb-4">8+ years of experience. Specializes in weight training and muscle building.</p>
+                        <div class="text-sm text-gray-600">
+                            <p>• ISSA Certified Personal Trainer</p>
+                            <p>• Nutrition Specialist</p>
+                            <p>• 200+ transformations</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trainer 2 -->
+                <div class="trainer-card card-hover">
+                    <div class="trainer-image">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="trainer-info">
+                        <h3 class="text-xl font-bold mb-2">Priya Singh</h3>
+                        <p style="color: #ff6b35;" class="font-semibold mb-3">Yoga & Flexibility Expert</p>
+                        <p class="text-sm text-gray-600 mb-4">6+ years specializing in yoga, mobility, and holistic fitness.</p>
+                        <div class="text-sm text-gray-600">
+                            <p>• RYT-200 Certified Yoga</p>
+                            <p>• Flexibility Coach</p>
+                            <p>• Wellness Counselor</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trainer 3 -->
+                <div class="trainer-card card-hover">
+                    <div class="trainer-image">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="trainer-info">
+                        <h3 class="text-xl font-bold mb-2">Arjun Patel</h3>
+                        <p style="color: #ff6b35;" class="font-semibold mb-3">HIIT & Cardio Specialist</p>
+                        <p class="text-sm text-gray-600 mb-4">5+ years. Expert in high-intensity interval training and endurance.</p>
+                        <div class="text-sm text-gray-600">
+                            <p>• ACE Certified Personal Trainer</p>
+                            <p>• HIIT Specialist</p>
+                            <p>• CrossFit Level 1</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transformations Gallery -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold section-title">Member Transformations</h2>
+                <p class="text-xl text-gray-600 mt-8">Real people, real results. This could be you!</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-hover rounded-15px overflow-hidden">
+                    <div style="background: linear-gradient(135deg, #ff6b35, #004e89); height: 200px; display: flex; align-items: center; justify-content: center;">
+                        <span class="text-6xl">👨</span>
+                    </div>
+                    <div class="p-6 bg-white">
+                        <h3 class="font-bold text-lg mb-2">Vikram - Lost 25kg</h3>
+                        <p class="text-gray-600 text-sm">"In 90 days, I went from 95kg to 70kg. The trainers and community support made all the difference!"</p>
+                    </div>
+                </div>
+
+                <div class="card-hover rounded-15px overflow-hidden">
+                    <div style="background: linear-gradient(135deg, #f7b801, #ff6b35); height: 200px; display: flex; align-items: center; justify-content: center;">
+                        <span class="text-6xl">👩</span>
+                    </div>
+                    <div class="p-6 bg-white">
+                        <h3 class="font-bold text-lg mb-2">Neha - Built Confidence</h3>
+                        <p class="text-gray-600 text-sm">"I gained muscle and strength. But more importantly, I gained confidence in myself. Highly recommend!"</p>
+                    </div>
+                </div>
+
+                <div class="card-hover rounded-15px overflow-hidden">
+                    <div style="background: linear-gradient(135deg, #004e89, #f7b801); height: 200px; display: flex; align-items: center; justify-content: center;">
+                        <span class="text-6xl">👨</span>
+                    </div>
+                    <div class="p-6 bg-white">
+                        <h3 class="font-bold text-lg mb-2">Akshay - 6-Pack Achieved</h3>
+                        <p class="text-gray-600 text-sm">"With personalized nutrition and PT sessions, I achieved my goal in 5 months. Worth every penny!"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold section-title">What Our Members Say</h2>
+                <p class="text-xl text-gray-600 mt-8">Join 500+ satisfied gym members with 4.8★ average rating</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card border-l-4 border-orange-500">
+                    <div class="flex items-center mb-3">
+                        <div class="flex text-yellow-400">★★★★★</div>
+                        <span class="ml-2 text-sm text-gray-600">(5.0)</span>
+                    </div>
+                    <p class="mb-4">"The best gym experience I've had. Professional trainers, clean facilities, and a motivating community. My transformation in 6 months was incredible!"</p>
+                    <div class="font-bold text-gray-800">Rohan Sharma</div>
+                    <div class="text-sm text-gray-600">✓ Verified Member • Pro Plan • 1 year</div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card border-l-4 border-orange-500">
+                    <div class="flex items-center mb-3">
+                        <div class="flex text-yellow-400">★★★★★</div>
+                        <span class="ml-2 text-sm text-gray-600">(5.0)</span>
+                    </div>
+                    <p class="mb-4">"Affordable pricing, expert trainers, and personalized attention. Celebrity Fitness Gym helped me lose 15kg in 5 months. Couldn't ask for better!"</p>
+                    <div class="font-bold text-gray-800">Deepika Patel</div>
+                    <div class="text-sm text-gray-600">✓ Verified Member • Elite Plan • 8 months</div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card border-l-4 border-orange-500">
+                    <div class="flex items-center mb-3">
+                        <div class="flex text-yellow-400">★★★★★</div>
+                        <span class="ml-2 text-sm text-gray-600">(5.0)</span>
+                    </div>
+                    <p class="mb-4">"The group classes are amazing! Great energy, motivating instructors, and friendly members. Best decision to join this gym!"</p>
+                    <div class="font-bold text-gray-800">Anuj Verma</div>
+                    <div class="text-sm text-gray-600">✓ Verified Member • Pro Plan • 4 months</div>
+                </div>
+
+                <!-- Testimonial 4 -->
+                <div class="testimonial-card border-l-4 border-orange-500">
+                    <div class="flex items-center mb-3">
+                        <div class="flex text-yellow-400">★★★★☆</div>
+                        <span class="ml-2 text-sm text-gray-600">(4.5)</span>
+                    </div>
+                    <p class="mb-4">"Great atmosphere and supportive trainers. Equipment is top-notch. Only suggestion would be more cardio machines during peak hours."</p>
+                    <div class="font-bold text-gray-800">Priya Singh</div>
+                    <div class="text-sm text-gray-600">✓ Verified Member • Elite Plan • 2 months</div>
+                </div>
+
+                <!-- Testimonial 5 -->
+                <div class="testimonial-card border-l-4 border-orange-500">
+                    <div class="flex items-center mb-3">
+                        <div class="flex text-yellow-400">★★★★★</div>
+                        <span class="ml-2 text-sm text-gray-600">(5.0)</span>
+                    </div>
+                    <p class="mb-4">"Started as a complete beginner. Trainers are so patient and encouraging. Now I can actually do 50 pushups! Highly recommend Celebrity Fitness."</p>
+                    <div class="font-bold text-gray-800">Vikram Joshi</div>
+                    <div class="text-sm text-gray-600">✓ Verified Member • Basic Plan • 3 months</div>
+                </div>
+
+                <!-- Testimonial 6 -->
+                <div class="testimonial-card border-l-4 border-orange-500">
+                    <div class="flex items-center mb-3">
+                        <div class="flex text-yellow-400">★★★★★</div>
+                        <span class="ml-2 text-sm text-gray-600">(5.0)</span>
+                    </div>
+                    <p class="mb-4">"Personal training sessions with Coach Rajesh changed my fitness journey. The nutrition guidance combined with training = incredible results!"</p>
+                    <div class="font-bold text-gray-800">Neha Desai</div>
+                    <div class="text-sm text-gray-600">✓ Verified Member • Elite Plan + PT • 6 months</div>
+                </div>
+            </div>
+
+            <!-- Summary Stats -->
+            <div class="mt-16 bg-gradient-to-r from-orange-50 to-blue-50 rounded-lg p-8">
+                <div class="grid md:grid-cols-4 gap-8 text-center">
+                    <div>
+                        <div class="text-4xl font-bold text-orange-500">4.8★</div>
+                        <p class="text-gray-600 mt-2">Average Rating</p>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold text-blue-600">500+</div>
+                        <p class="text-gray-600 mt-2">Active Members</p>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold text-green-600">1,200+</div>
+                        <p class="text-gray-600 mt-2">Reviews</p>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold text-purple-600">98%</div>
+                        <p class="text-gray-600 mt-2">Satisfaction Rate</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 bg-gray-50" id="faq">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold section-title">Frequently Asked Questions</h2>
+            </div>
+
+            <div x-data="{ open: 0 }">
+                <div class="faq-item">
+                    <button @click="open = open === 1 ? 0 : 1">
+                        <span>Can I cancel my membership anytime?</span>
+                        <span x-text="open === 1 ? '−' : '+'"></span>
+                    </button>
+                    <div class="faq-content" :class="{ 'active': open === 1 }">
+                        <p>Yes! We offer month-to-month memberships with no long-term contracts. You can cancel anytime with 7 days' notice.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button @click="open = open === 2 ? 0 : 2">
+                        <span>What if I'm a complete beginner?</span>
+                        <span x-text="open === 2 ? '−' : '+'"></span>
+                    </button>
+                    <div class="faq-content" :class="{ 'active': open === 2 }">
+                        <p>Perfect! All our trainers are experienced with beginners. We offer a free orientation session and can create a custom beginner-friendly program for you.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button @click="open = open === 3 ? 0 : 3">
+                        <span>Are personal training sessions expensive?</span>
+                        <span x-text="open === 3 ? '−' : '+'"></span>
+                    </button>
+                    <div class="faq-content" :class="{ 'active': open === 3 }">
+                        <p>Our Pro membership includes 4 PT sessions/month (₹625/session), and Elite includes unlimited sessions. Standalone sessions cost ₹800-1000 depending on trainer.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button @click="open = open === 4 ? 0 : 4">
+                        <span>What equipment do you have?</span>
+                        <span x-text="open === 4 ? '−' : '+'"></span>
+                    </button>
+                    <div class="faq-content" :class="{ 'active': open === 4 }">
+                        <p>We have everything: dumbbells, barbells, machines, treadmills, stationary bikes, rowing machines, functional training area, and yoga studio.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button @click="open = open === 5 ? 0 : 5">
+                        <span>Do you offer nutrition counseling?</span>
+                        <span x-text="open === 5 ? '−' : '+'"></span>
+                    </button>
+                    <div class="faq-content" :class="{ 'active': open === 5 }">
+                        <p>Yes! Pro and Elite members get nutritional guidance. We also offer dedicated nutrition coaching packages.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button @click="open = open === 6 ? 0 : 6">
+                        <span>What are your operating hours?</span>
+                        <span x-text="open === 6 ? '−' : '+'"></span>
+                    </button>
+                    <div class="faq-content" :class="{ 'active': open === 6 }">
+                        <p>We're open 24/7 for members! Group classes run from 6 AM to 9 PM daily. Personal training available by appointment.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-20" id="contact">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold section-title">Get In Touch</h2>
+                <p class="text-xl text-gray-600 mt-8">Ready to start your fitness journey?</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-8">Visit Us or Reach Out</h3>
+
+                    <div class="mb-8">
+                        <div class="flex items-start mb-6">
+                            <i class="fas fa-map-marker-alt text-2xl mr-4" style="color: #ff6b35; margin-top: 5px;"></i>
+                            <div>
+                                <h4 class="font-bold mb-2">Location</h4>
+                                <p class="text-gray-600">Delhi, India</p>
+                                <a href="https://share.google/yXV6cuORZSIVvwQL8" target="_blank" class="text-orange-500 hover:text-orange-700 font-semibold mt-2 inline-block">📍 View on Google Maps</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start mb-6">
+                            <i class="fas fa-phone text-2xl mr-4" style="color: #ff6b35; margin-top: 5px;"></i>
+                            <div>
+                                <h4 class="font-bold mb-2">Phone</h4>
+                                <p class="text-gray-600"><a href="tel:+919876543210" class="hover:text-orange-500 font-semibold">+91 9876 543 210</a></p>
+                                <a href="https://wa.me/919876543210?text=Hi%20Celebrity%20Fitness%20Gym%21%20I%27m%20interested%20in%20joining." target="_blank" class="text-green-600 hover:text-green-700 font-semibold mt-1 inline-block">💬 WhatsApp Us</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start mb-6">
+                            <i class="fas fa-envelope text-2xl mr-4" style="color: #ff6b35; margin-top: 5px;"></i>
+                            <div>
+                                <h4 class="font-bold mb-2">Email</h4>
+                                <p class="text-gray-600"><a href="mailto:celebrity@fitnessgym.com" class="hover:text-orange-500">celebrity@fitnessgym.com</a></p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start mb-6">
+                            <i class="fab fa-instagram text-2xl mr-4" style="color: #ff6b35; margin-top: 5px;"></i>
+                            <div>
+                                <h4 class="font-bold mb-2">Follow Us on Instagram</h4>
+                                <a href="https://instagram.com/celebrityfitnessdelhi" target="_blank" class="text-pink-600 hover:text-pink-700 font-semibold">@celebrityfitnessdelhi</a>
+                                <p class="text-gray-600 text-sm mt-1">Follow for transformation stories, workout tips & gym updates</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <i class="fas fa-clock text-2xl mr-4" style="color: #ff6b35; margin-top: 5px;"></i>
+                            <div>
+                                <h4 class="font-bold mb-2">Hours</h4>
+                                <p class="text-gray-600">Gym: 24/7<br>Front Desk: 7 AM - 10 PM<br>Classes: 6 AM - 9 PM</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Google Map -->
+                    <div class="mt-8 rounded-15px overflow-hidden shadow-lg" style="height: 300px;">
+                        <iframe src="https://share.google/yXV6cuORZSIVvwQL8" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <a href="https://share.google/yXV6cuORZSIVvwQL8" target="_blank" class="btn-primary">📍 View Full Location</a>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-8">Send us a Message</h3>
+                    <form x-data="{ submitted: false }" @submit.prevent="submitted = true" class="space-y-4">
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2">Name *</label>
+                            <input type="text" placeholder="Your name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500" />
+                        </div>
+
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2">Email *</label>
+                            <input type="email" placeholder="Your email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500" />
+                        </div>
+
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2">Phone *</label>
+                            <input type="tel" placeholder="+91 xxxxxxxxxx" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500" />
+                        </div>
+
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2">Message *</label>
+                            <textarea placeholder="Tell us about your fitness goals..." required rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-primary w-full">Send Message</button>
+
+                        <p x-show="submitted" class="text-green-600 font-bold text-center">✅ Thank you! We'll get back to you soon.</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-dumbbell text-2xl" style="color: #ff6b35;"></i>
+                        <span class="font-bold text-xl">Celebrity Fitness Gym</span>
+                    </div>
+                    <p class="text-gray-400">Your transformation starts here</p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#services" class="hover:text-orange-500">Services</a></li>
+                        <li><a href="#pricing" class="hover:text-orange-500">Pricing</a></li>
+                        <li><a href="#trainers" class="hover:text-orange-500">Trainers</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="https://facebook.com/celebrityfitnessdelhi" target="_blank" class="text-gray-400 hover:text-blue-500 text-xl"><i class="fab fa-facebook"></i></a>
+                        <a href="https://instagram.com/celebrityfitnessdelhi" target="_blank" class="text-gray-400 hover:text-pink-500 text-xl"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com/celebrityfitness" target="_blank" class="text-gray-400 hover:text-blue-400 text-xl"><i class="fab fa-twitter"></i></a>
+                        <a href="https://youtube.com/@celebrityfitnessdelhi" target="_blank" class="text-gray-400 hover:text-red-500 text-xl"><i class="fab fa-youtube"></i></a>
+                        <a href="https://wa.me/919876543210" target="_blank" class="text-gray-400 hover:text-green-500 text-xl"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4">Newsletter</h4>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-lg text-gray-900 flex-1" />
+                        <button class="bg-orange-500 px-4 py-2 rounded-r-lg">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 pt-8">
+                <p class="text-center text-gray-400">© 2024 Celebrity Fitness Gym. All rights reserved. | <a href="#" class="hover:text-orange-500">Privacy Policy</a> | <a href="#" class="hover:text-orange-500">Terms & Conditions</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <div class="whatsapp-btn" onclick="window.open('https://wa.me/919876543210?text=Hi%20Celebrity%20Fitness%20Gym%21%20I%27m%20interested%20in%20joining%20your%20gym.%20Can%20you%20tell%20me%20more%20about%20membership%20plans%3F', '_blank')">
+        <a href="javascript:void(0);">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Scroll Reveal Script -->
+    <script>
+        const reveals = document.querySelectorAll('.scroll-reveal');
+
+        function reveal() {
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', reveal);
+        reveal(); // Initial call on page load
+    </script>
+</body>
+</html>
